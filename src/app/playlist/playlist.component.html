@@ -1,0 +1,20 @@
+<li *ngFor="let item of mp3Objects">{{item.Key}}</li>
+
+<form>
+<h2>Laal Ju, Laadli Ju Bhajans</h2>
+  <mat-form-field>
+    <mat-label>Select Bhajan</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="Bhajans">
+      <mat-option *ngFor="let item of mp3Objects" [value]="item.Key" (click)="getObjectURL(item.Key)">
+        {{item.Key}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected Bhajan: {{selectedValue}} </p>
+</form>
+<div *ngIf="url">
+  <audio controls>
+    <source [src]="url" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
